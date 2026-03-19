@@ -40,11 +40,11 @@ class GameOverScreen(val game: AdventureIslandGame, val score: Int) : Screen {
         batch.begin()
         
         // 绘制游戏结束文字
-        font.data.scale = 2f
-        font.draw(batch, "GAME OVER", Constants.WORLD_WIDTH / 2 - 100, Constants.WORLD_HEIGHT / 2 + 50)
+        font.data.setScale(2f)
+        font.draw(batch, "GAME OVER", Constants.WORLD_WIDTH / 2 - 100f, Constants.WORLD_HEIGHT / 2 + 50f)
         
-        font.data.scale = 1f
-        font.draw(batch, "Score: $score", Constants.WORLD_WIDTH / 2 - 50, Constants.WORLD_HEIGHT / 2 - 20)
+        font.data.setScale(1f)
+        font.draw(batch, "Score: $score", Constants.WORLD_WIDTH / 2 - 50f, Constants.WORLD_HEIGHT / 2 - 20f)
         
         if (restartTimer >= restartDelay) {
             font.draw(batch, "Restarting...", Constants.WORLD_WIDTH / 2 - 70, Constants.WORLD_HEIGHT / 2 - 80)

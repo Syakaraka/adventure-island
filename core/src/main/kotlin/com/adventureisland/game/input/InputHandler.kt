@@ -149,4 +149,5 @@ class InputHandler : InputProcessor {
     override fun touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = false
     override fun mouseMoved(screenX: Int, screenY: Int): Boolean = false
     override fun scrolled(amountX: Float, amountY: Float): Boolean = false
+    override fun touchCancelled(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
 }

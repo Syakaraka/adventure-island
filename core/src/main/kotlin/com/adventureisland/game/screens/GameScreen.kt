@@ -30,7 +30,7 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     private val inputHandler = InputHandler()
     
     private var player: Player? = null
-    private var platforms = Array<Platform>()
+    private var platforms = mutableListOf<Platform>()
     
     init {
         // 设置相机和视口
@@ -71,7 +71,9 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
         platforms.add(Platform(500f, 120f, 30f, 80f, PlatformType.LADDER))
         
         // 添加到实体管理器
-        platforms.forEach { entityManager.add(it) }
+        for (platform in platforms) {
+            entityManager.add(platform)
+        }
     }
     
     override fun render(deltaTime: Float) {
