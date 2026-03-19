@@ -72,11 +72,12 @@ class EntityManager {
     /**
      * 获取指定类型的实体
      */
-    inline fun <reified T : Entity> getOfType(): Array<T> {
+    fun <T : Entity> getOfType(klass: Class<T>): Array<T> {
         val result = Array<T>()
         for (entity in entities) {
-            if (entity is T) {
-                result.add(entity)
+            if (klass.isInstance(entity)) {
+                @Suppress("UNCHECKED_CAST")
+                result.add(entity as T)
             }
         }
         return result
