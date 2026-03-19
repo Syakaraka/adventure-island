@@ -182,8 +182,8 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     }
     
     private fun checkProjectileCollisions() {
-        val projectiles = entityManager.getOfType(Projectile::class.java)
-        val enemies = entityManager.getOfType(Enemy::class.java)
+        val projectiles = entityManager.getOfType<Projectile>()
+        val enemies = entityManager.getOfType<Enemy>()
         
         for (projectile in projectiles) {
             for (enemy in enemies) {
@@ -198,7 +198,7 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     
     private fun checkPlayerEnemyCollisions() {
         player?.let { p ->
-            val enemies = entityManager.getOfType(Enemy::class.java)
+            val enemies = entityManager.getOfType<Enemy>()
             for (enemy in enemies) {
                 if (enemy.isActive && !enemy.isDead && Collision.check(p, enemy)) {
                     if (enemy.isStunned) {
@@ -224,7 +224,7 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     
     private fun checkPlayerItemCollisions() {
         player?.let { p ->
-            val items = entityManager.getOfType(Item::class.java)
+            val items = entityManager.getOfType<Item>()
             for (item in items) {
                 if (item.isActive && Collision.check(p, item)) {
                     val effect = item.collect()

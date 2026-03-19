@@ -72,11 +72,10 @@ class EntityManager {
     /**
      * 获取指定类型的实体
      */
-    fun <T : Entity> getOfType(klass: Class<T>): Array<T> {
-        val result = Array<T>()
+    inline fun <reified T : Entity> getOfType(): com.badlogic.gdx.utils.Array<T> {
+        val result = com.badlogic.gdx.utils.Array<T>()
         for (entity in entities) {
-            if (klass.isInstance(entity)) {
-                @Suppress("UNCHECKED_CAST")
+            if (entity is T) {
                 result.add(entity as T)
             }
         }
