@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Array
  */
 class EntityManager {
     
-    private val entities = Array<Entity>()
+    internal val entities = Array<Entity>()
     private val entitiesToRemove = Array<Entity>()
     private val entitiesToAdd = Array<Entity>()
     
