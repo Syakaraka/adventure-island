@@ -31,7 +31,7 @@ class Platform(x: Float, y: Float, width: Float, height: Float,
         }
     }
     
-    fun break() {
+    fun breakPlatform() {
         if (type == PlatformType.BREAKABLE) {
             isBroken = true
             isActive = false
