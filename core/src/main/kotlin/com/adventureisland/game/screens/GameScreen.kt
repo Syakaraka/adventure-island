@@ -35,7 +35,7 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     init {
         // 设置相机和视口
         camera = OrthographicCamera()
-        viewport = FitViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera)
+        viewport = FitViewport(800f, 450f, camera)
         batch = SpriteBatch()
         
         // 初始化游戏
