@@ -1,0 +1,16 @@
+[versions]
+agp = "8.2.0"
+kotlin = "1.9.20"
+libgdx = "1.12.1"
+coreLibraryDesugaring = "2.0.4"
+
+[libraries]
+libgdx-core = { module = "com.badlogicgames.gdx:gdx", version.ref = "libgdx" }
+libgdx-backend-android = { module = "com.badlogicgames.gdx:gdx-backend-android", version.ref = "libgdx" }
+libgdx-platform = { module = "com.badlogicgames.gdx:gdx-platform", version.ref = "libgdx" }
+core-library-desugaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "coreLibraryDesugaring" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-library = { id = "org.jetbrains.kotlin.android.library", version.ref = "kotlin" }
