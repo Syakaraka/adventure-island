@@ -23,7 +23,7 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     
     private val camera: OrthographicCamera
     private val viewport: Viewport
-    private val batch: SpriteBatch
+    private var batch: SpriteBatch? = null
     
     private val gameLoop = GameLoop()
     private val entityManager = EntityManager()
@@ -37,12 +37,13 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
         // 设置相机和视口
         camera = OrthographicCamera()
         viewport = FitViewport(800f, 450f, camera)
-        batch = SpriteBatch()
     }
     
     override fun show() {
         // 在屏幕显示时初始化游戏（确保 GL 上下文已准备好）
         if (!isInitialized) {
+            // 创建 SpriteBatch（需要 GL 上下文）
+            batch = SpriteBatch()
             initGame()
             isInitialized = true
         }
@@ -87,8 +88,8 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
         Gdx.gl.glClearColor(0.4f, 0.6f, 0.9f, 1f)  // 天空蓝背景
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
         
-        // 如果还未初始化，直接返回
-        if (!isInitialized) return
+        // 如果还未初始化或 batch 未创建，直接返回
+        if (!isInitialized || batch == null) return
         
         // 更新游戏逻辑
         gameLoop.update(deltaTime) {
@@ -97,11 +98,11 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
         
         // 渲染
         camera.update()
-        batch.projectionMatrix = camera.combined
-        batch.begin()
-        entityManager.render(batch)
-        renderUI(batch)
-        batch.end()
+        batch!!.projectionMatrix = camera.combined
+        batch!!.begin()
+        entityManager.render(batch!!)
+        renderUI(batch!!)
+        batch!!.end()
     }
     
     private fun updateGame(deltaTime: Float) {
