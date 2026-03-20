@@ -14,13 +14,8 @@ class MainActivity : AndroidApplication() {
         super.onCreate(savedInstanceState)
         
         val config = AndroidApplicationConfiguration().apply {
-            // 横屏游戏
+            // 横屏游戏 - 使用沉浸式模式隐藏状态栏和导航栏
             useImmersiveMode = true
-            hideStatusBar = true
-            hideNavBar = true
-            
-            // 音频配置
-            useAudio = true
             
             // 传感器 (可选)
             useAccelerometer = false
