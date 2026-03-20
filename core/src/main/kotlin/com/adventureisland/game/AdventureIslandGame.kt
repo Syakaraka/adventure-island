@@ -1,10 +1,8 @@
 package com.adventureisland.game
 
 import com.badlogic.gdx.Game
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
-import com.adventureisland.game.screens.GameScreen
 
 /**
  * 游戏主入口类
@@ -12,14 +10,24 @@ import com.adventureisland.game.screens.GameScreen
  */
 class AdventureIslandGame : Game() {
     
+    init {
+        println("[AdventureIslandGame] Class loaded")
+    }
+    
     override fun create() {
+        println("[AdventureIslandGame] ====== create() START ======")
+        
         try {
-            Gdx.app.log("AdventureIslandGame", "create() called")
+            println("[AdventureIslandGame] Setting up test screen...")
             
             // 先设置一个简单的清屏屏幕，测试基本功能
             setScreen(object : Screen {
+                init {
+                    println("[TestScreen] Screen object created")
+                }
+                
                 override fun show() {
-                    Gdx.app.log("TestScreen", "show() called")
+                    println("[TestScreen] show() called")
                 }
                 
                 override fun render(delta: Float) {
@@ -27,26 +35,44 @@ class AdventureIslandGame : Game() {
                     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
                 }
                 
-                override fun resize(w: Int, h: Int) {}
-                override fun pause() {}
-                override fun resume() {}
-                override fun hide() {}
-                override fun dispose() {}
+                override fun resize(w: Int, h: Int) {
+                    println("[TestScreen] resize($w, $h)")
+                }
+                override fun pause() {
+                    println("[TestScreen] pause()")
+                }
+                override fun resume() {
+                    println("[TestScreen] resume()")
+                }
+                override fun hide() {
+                    println("[TestScreen] hide()")
+                }
+                override fun dispose() {
+                    println("[TestScreen] dispose()")
+                }
             })
             
-            Gdx.app.log("AdventureIslandGame", "Test screen set")
+            println("[AdventureIslandGame] Test screen set successfully")
+            println("[AdventureIslandGame] ====== create() END ======")
         } catch (e: Exception) {
-            Gdx.app.error("AdventureIslandGame", "Error in create()", e)
+            println("[AdventureIslandGame] FATAL ERROR in create(): ${e.message}")
+            e.printStackTrace()
             throw e
         }
     }
     
     override fun render() {
-        super.render()
+        try {
+            super.render()
+        } catch (e: Exception) {
+            println("[AdventureIslandGame] ERROR in render(): ${e.message}")
+            e.printStackTrace()
+            throw e
+        }
     }
     
     override fun dispose() {
-        // 释放资源
+        println("[AdventureIslandGame] dispose() called")
         super.dispose()
     }
 }
