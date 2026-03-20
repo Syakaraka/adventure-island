@@ -278,8 +278,6 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     
     override fun hide() {}
     
-    override fun show() {}
-    
     override fun dispose() {
         batch.dispose()
         entityManager.clear()
