@@ -2,7 +2,6 @@ package com.adventureisland.game
 
 import com.badlogic.gdx.Game
 import com.adventureisland.game.screens.GameScreen
-import com.adventureisland.game.utils.Constants
 
 /**
  * 游戏主入口类
@@ -11,10 +10,6 @@ import com.adventureisland.game.utils.Constants
 class AdventureIslandGame : Game() {
     
     override fun create() {
-        // 设置游戏窗口大小 (横屏)
-        Constants.WORLD_WIDTH = 800f
-        Constants.WORLD_HEIGHT = 450f
-        
         // 启动游戏主界面
         setScreen(GameScreen(this))
     }

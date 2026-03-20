@@ -31,15 +31,21 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     
     private var player: Player? = null
     private var platforms = mutableListOf<Platform>()
+    private var isInitialized = false
     
     init {
         // 设置相机和视口
         camera = OrthographicCamera()
         viewport = FitViewport(800f, 450f, camera)
         batch = SpriteBatch()
-        
-        // 初始化游戏
-        initGame()
+    }
+    
+    override fun show() {
+        // 在屏幕显示时初始化游戏（确保 GL 上下文已准备好）
+        if (!isInitialized) {
+            initGame()
+            isInitialized = true
+        }
     }
     
     private fun initGame() {
@@ -80,6 +86,9 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
         // 清除屏幕
         Gdx.gl.glClearColor(0.4f, 0.6f, 0.9f, 1f)  // 天空蓝背景
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+        
+        // 如果还未初始化，直接返回
+        if (!isInitialized) return
         
         // 更新游戏逻辑
         gameLoop.update(deltaTime) {
