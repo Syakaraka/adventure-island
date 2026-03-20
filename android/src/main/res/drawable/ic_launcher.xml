@@ -19,8 +19,8 @@
                 </shape>
             </item>
             
-            <!-- 绿色草地 -->
-            <item android:bottom="0dp" android:height="25%">
+            <!-- 绿色草地 (底部 25% = 24dp) -->
+            <item android:bottom="0dp" android:height="24dp">
                 <shape android:shape="rectangle">
                     <solid android:color="#228B22" />
                     <corners android:bottomLeftRadius="24dp" android:bottomRightRadius="24dp" />
@@ -35,8 +35,8 @@
                 </shape>
             </item>
             
-            <!-- 简单的小人角色 -->
-            <item android:bottom="15%" android:gravity="center_horizontal">
+            <!-- 简单的小人角色 (底部 15% = 14dp) -->
+            <item android:bottom="14dp" android:gravity="center_horizontal">
                 <layer-list>
                     <!-- 身体 -->
                     <item android:width="16dp" android:height="20dp" android:gravity="center">
