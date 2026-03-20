@@ -1,6 +1,7 @@
 package com.adventureisland.game
 
 import com.badlogic.gdx.Game
+import com.badlogic.gdx.Gdx
 import com.adventureisland.game.screens.GameScreen
 
 /**
@@ -10,8 +11,15 @@ import com.adventureisland.game.screens.GameScreen
 class AdventureIslandGame : Game() {
     
     override fun create() {
-        // 启动游戏主界面
-        setScreen(GameScreen(this))
+        try {
+            Gdx.app.log("AdventureIslandGame", "create() called")
+            // 启动游戏主界面
+            setScreen(GameScreen(this))
+            Gdx.app.log("AdventureIslandGame", "GameScreen set")
+        } catch (e: Exception) {
+            Gdx.app.error("AdventureIslandGame", "Error in create()", e)
+            throw e
+        }
     }
     
     override fun render() {

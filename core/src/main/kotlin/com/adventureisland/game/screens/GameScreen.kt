@@ -35,17 +35,29 @@ class GameScreen(val game: AdventureIslandGame) : Screen {
     
     init {
         // 设置相机和视口
+        Gdx.app.log("GameScreen", "Constructor called")
         camera = OrthographicCamera()
         viewport = FitViewport(800f, 450f, camera)
+        Gdx.app.log("GameScreen", "Camera and viewport initialized")
     }
     
     override fun show() {
+        Gdx.app.log("GameScreen", "show() called, isInitialized=$isInitialized")
         // 在屏幕显示时初始化游戏（确保 GL 上下文已准备好）
-        if (!isInitialized) {
-            // 创建 SpriteBatch（需要 GL 上下文）
-            batch = SpriteBatch()
-            initGame()
-            isInitialized = true
+        try {
+            if (!isInitialized) {
+                Gdx.app.log("GameScreen", "Initializing...")
+                // 创建 SpriteBatch（需要 GL 上下文）
+                batch = SpriteBatch()
+                Gdx.app.log("GameScreen", "SpriteBatch created")
+                initGame()
+                Gdx.app.log("GameScreen", "Game initialized")
+                isInitialized = true
+            }
+        } catch (e: Exception) {
+            Gdx.app.error("GameScreen", "Error in show()", e)
+            e.printStackTrace()
+            throw e
         }
     }
     
