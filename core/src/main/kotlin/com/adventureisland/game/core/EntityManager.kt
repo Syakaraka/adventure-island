@@ -72,11 +72,11 @@ class EntityManager {
     /**
      * 获取指定类型的实体
      */
-    inline fun <reified T : Entity> getOfType(): com.badlogic.gdx.utils.Array<T> {
+    fun <T : Entity> getOfType(type: Class<T>): com.badlogic.gdx.utils.Array<T> {
         val result = com.badlogic.gdx.utils.Array<T>()
         for (entity in entities) {
-            if (entity is T) {
-                result.add(entity as T)
+            if (type.isInstance(entity)) {
+                result.add(type.cast(entity))
             }
         }
         return result
